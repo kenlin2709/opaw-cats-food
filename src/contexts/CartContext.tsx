@@ -1,22 +1,7 @@
 'use client'
 
 import { createContext, useContext, useReducer, useEffect } from 'react'
-
-interface CartItem {
-  id: string
-  productId: string
-  name: string
-  price: number
-  image?: string
-  quantity: number
-}
-
-interface CartState {
-  items: CartItem[]
-  total: number
-  itemCount: number
-  isLoading: boolean
-}
+import { CartItem, CartState, Product } from '@/types'
 
 type CartAction =
   | { type: 'SET_LOADING'; payload: boolean }
@@ -29,7 +14,7 @@ type CartAction =
 const CartContext = createContext<{
   state: CartState
   dispatch: React.Dispatch<CartAction>
-  addToCart: (product: any) => Promise<void>
+  addToCart: (product: Product) => Promise<void>
   removeFromCart: (productId: string) => Promise<void>
   updateQuantity: (productId: string, quantity: number) => Promise<void>
   clearCart: () => Promise<void>
@@ -150,7 +135,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   }, [state.items, state.isLoading])
 
-  const addToCart = async (product: any) => {
+  const addToCart = async (product: Product) => {
     const cartItem: CartItem = {
       id: `${product.id}-${Date.now()}`,
       productId: product.id,

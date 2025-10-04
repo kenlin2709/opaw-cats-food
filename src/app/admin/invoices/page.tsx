@@ -5,6 +5,7 @@ import { useCart } from '@/contexts/CartContext'
 import { prisma } from '@/lib/prisma'
 import { FileText, Download, Eye, Plus, Search, Filter } from 'lucide-react'
 import Image from 'next/image'
+import { InvoiceData } from '@/types'
 
 interface Invoice {
   id: string
@@ -69,7 +70,7 @@ export default function InvoicesPage() {
         return
       }
 
-      const invoiceData = {
+      const invoiceData: InvoiceData = {
         customerEmail: 'customer@example.com',
         customerName: 'Customer Name',
         items: state.items.map(item => ({

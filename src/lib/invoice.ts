@@ -1,22 +1,5 @@
 import { stripe } from './stripe'
-
-export interface InvoiceData {
-  customerEmail: string
-  customerName: string
-  items: {
-    name: string
-    description: string
-    quantity: number
-    price: number
-  }[]
-  shippingAddress: {
-    line1: string
-    city: string
-    state: string
-    postal_code: string
-    country: string
-  }
-}
+import { InvoiceData, InvoiceItem, ShippingAddress } from '@/types'
 
 export async function createStripeInvoice(invoiceData: InvoiceData) {
   try {

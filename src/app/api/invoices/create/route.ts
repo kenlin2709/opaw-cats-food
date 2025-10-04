@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createStripeInvoice, InvoiceData } from '@/lib/invoice'
+import { createStripeInvoice } from '@/lib/invoice'
+import { InvoiceData } from '@/types'
 
 export async function POST(request: NextRequest) {
   try {
